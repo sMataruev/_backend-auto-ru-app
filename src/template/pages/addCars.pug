@@ -1,0 +1,20 @@
+extends ../layout/template
+block body
+	body
+		.container
+			h3= title
+			form(action="/add" method="post" class="col s8 myMT")
+				div(class="input-field col s6")
+					label(for="model")
+					input(placeholder="Car brand" id="model" name='model' type="text" class="validate" required)
+					span(class="helper-text" data-error="Введите модель автомобиля")
+				div(class="input-field col s6")
+					label(for="price")
+					input(placeholder="Car price" id="price" name='price' type="number" class="validate" required min=10)
+					span(class="helper-text" data-error="Введите цену автомобиля")
+				div(class="input-field col s6")
+					label(for="carlink")
+					input(placeholder="Car link" id="carlink" name='link' type="text" class="validate" required)
+					span(class="helper-text" data-error="автомобиля")
+				div(class="input-field col s6")
+					button(class="btn btn-primary") send

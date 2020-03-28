@@ -1,0 +1,18 @@
+nav(class="myNav")
+	.nav_wrapper
+		a(href="/" class="brand-logo") Auto.ru
+		ul(id="nav-mobile" class="right hide-on-med-and-down")
+			if isHome === true
+				li(class='active'): a(href="/") Home
+			else
+				li: a(href="/") Home
+
+			if isCar === true
+				li(class='active'): a(href="/cars") Cars
+			else
+				li: a(href="/cars") Cars
+
+			if isAdd === true
+				li(class='active'): a(href="/add") Add cars
+			else
+				li: a(href="/add") Add cars

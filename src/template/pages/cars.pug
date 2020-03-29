@@ -2,4 +2,21 @@ extends ../layout/template
 block body
 	body
 		.container
-			h3= title
+			h2 Car list
+			.row
+				.col.s10.offset-s1
+					each car in cars
+						.card.horizontal
+							.card-image
+								img(src= car.carImg)
+							.card-stacked
+								.card-content
+									p= car.year
+									p= car.distance
+									p= car.distance
+									p= car.model
+									p= car.price
+								.card-action
+									a(href="#") This is a link
+
+

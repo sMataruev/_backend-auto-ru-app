@@ -1,7 +1,7 @@
 'use strict';
 const { Router } = require( 'express' );
 const router = Router();
-
+const Car = require( '../model/car' );
 
 router
     .get( '/', ( req, res ) => {
@@ -13,12 +13,13 @@ router
     } )
     .post( '/', ( req, res ) => {
         res.status( 201 );
-        const { model, price, link } = req.body;
-        console.log( model );
-        console.log( price );
-        console.log( link );
-        res.redirect('/cars')
+        const { year, distance, model, price, carImg } = req.body;
+        const car = new Car( year, distance, model, price, carImg );
+        car.save();
+
+        res.redirect( '/cars' )
     } );
+
 
 // C R U D
 //Create

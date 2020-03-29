@@ -1,12 +1,15 @@
 'use strict';
 const { Router } = require( 'express' );
 const router = Router();
+const Car = require( '../model/car' );
 
+router.get( '/', async ( req, res ) => {
+    const cars = await Car.getAllCars();
 
-router.get( '/', ( req, res ) => {
     res.status( 200 )
         .render( 'cars', {
-            title: 'Cars',
+            title: 'Car list',
+            cars,
             isCar: true
         } );
 } );

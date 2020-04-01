@@ -1,0 +1,17 @@
+.myNav {
+  background: #8f8b91;
+  padding: 0 30px; }
+
+.myMT {
+  margin-top: 50px; }
+
+.myCardAction {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+.CartForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+}

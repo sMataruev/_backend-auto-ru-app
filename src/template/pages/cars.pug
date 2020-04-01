@@ -1,22 +1,39 @@
 extends ../layout/template
+block title
+	title= title
 block body
 	body
 		.container
-			h2 Car list
-			.row
-				.col.s10.offset-s1
-					each car in cars
-						.card.horizontal
-							.card-image
-								img(src= car.carImg)
-							.card-stacked
-								.card-content
-									p= car.year
-									p= car.distance
-									p= car.distance
-									p= car.model
-									p= car.price
-								.card-action
-									a(href="#") This is a link
-
-
+			h4= title
+			if cars
+				each car in cars
+					.row
+						.col.s12.offset-s1
+							.card.horizontal.p2
+								.card-image
+									img(src= car.carImg alt="")
+									span(class="card-title")= car.model
+								.card-stacked
+									.card-content
+										table.highlight
+											tbody
+												tr
+													th Модель:
+													td: p= car.model
+												tr
+													th Год выпуска:
+													td: p= car.year
+												tr
+													th Пробег:
+													td: p= car.distance
+												tr
+													th Цена:
+													td: p(class='price')= car.price
+									.card-action.myCardAction
+										a(href="/cars/" + car.id) Открыть
+										form(action='/cart/add' method='post' class='CartForm')
+											input(type='hidden' name='id' value= car.id )
+											input(type='submit' class='btn btn-small' value='buy')
+										//button(type="submit" class="btn red waves-effect waves-light") Удалить
+			else
+				p Машин нет

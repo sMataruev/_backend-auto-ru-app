@@ -1,0 +1,31 @@
+extends ../layout/template
+block title
+	title= title
+block body
+	body
+		.container
+			h4= title
+			.row
+				.col.s12.offset-s1
+					.card.horizontal.p2
+						.card-image
+							img(src= oneCar.carImg alt="")
+							span(class="card-title")= oneCar.model
+						.card-stacked
+							.card-content
+								table.highlight
+									tbody
+										tr
+											th Модель:
+											td: p= oneCar.model
+										tr
+											th Год выпуска:
+											td: p= oneCar.year
+										tr
+											th Пробег:
+											td: p= oneCar.distance
+										tr
+											th Цена:
+											td: p(class="price")= oneCar.price
+							.card-action.myCardAction
+								a(href="/cars/" class="btn red waves-effect waves-light") Назад

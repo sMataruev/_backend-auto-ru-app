@@ -37,9 +37,12 @@ class Car {
                     resolve( JSON.parse( content ) );
                 } );
         } )
-
     }
 
+    static async getOneCarById(carId){
+        const allCars = await Car.getAllCars();
+        return allCars.find( oneCar => oneCar.id === carId );
+    }
     //Сохранение одной машины
     async save() {
         const allCars = await Car.getAllCars();
@@ -56,9 +59,7 @@ class Car {
                     resolve();
                 } );
         })
-
     }
-
 }
 
 module.exports = Car;

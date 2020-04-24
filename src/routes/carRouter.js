@@ -4,7 +4,11 @@ const router = Router();
 const Car = require( '../model/car' );
 
 router.get( '/', async ( req, res ) => {
-    const cars = await Car.getAllCars();
+
+    const cars = await Car.find();
+
+    console.log( 'cars___', cars );
+
     res.status( 200 )
         .render( 'cars', {
             title: 'Car list',
@@ -12,8 +16,9 @@ router.get( '/', async ( req, res ) => {
             isCar: true
         } );
 } );
+
 router.get( '/:id', async ( req, res ) => {
-    const oneCar = await Car.getOneCarById( req.params.id );
+    const oneCar = await Car.findById( req.params.id );
     res.status( 200 )
         .render( 'car', {
             title: 'Показ одной машины',
@@ -21,6 +26,5 @@ router.get( '/:id', async ( req, res ) => {
             isCar: true
         } )
 } );
-
 
 module.exports = router;

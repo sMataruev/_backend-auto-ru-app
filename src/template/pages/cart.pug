@@ -4,4 +4,17 @@ block title
 block body
 	.container
 		h2= title
-			pre= cars.price
+		table
+			thead
+				tr
+					th Model
+					th Price
+					th Count
+				tbody
+					each item in cars
+						tr
+							td= item.brand
+							td= item.price
+							td= item.count
+		p: b=  count
+		p=  price

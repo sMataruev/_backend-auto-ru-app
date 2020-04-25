@@ -1,20 +1,39 @@
 extends ../layout/template
+
 block title
-	title Cart
+	title= title
 block body
-	.container
-		h2= title
-		table
-			thead
-				tr
-					th Model
-					th Price
-					th Count
-				tbody
-					each item in cars
+	body
+		.container
+			h2= title
+			table
+				thead
+					tr
+						th Модель
+						th(style="text-align:center") Количество
+						th Цена
+
+				each item, index in cars
+					tbody
 						tr
 							td= item.brand
+							td(style="text-align:center; display:flex; justify-content:center")
+								form(action="/cart/rem" method="post" style="margin:0")
+									div(style="margin: 0 10px; cursor:pointer;")
+										input(type="hidden" name="id" value= item._id)
+										button(style="cursor:pointer;") &lt;
+								span= item.count
+								form(action="/cart/add" method="post" style="margin:0")
+									div(style="margin: 0 10px;") &nbsp;
+										input(type="hidden" name="id" value= item._id)
+										button(style="cursor:pointer;") &gt;
 							td= item.price
-							td= item.count
-		p: b=  count
-		p=  price
+
+
+				tfoot
+					tr
+						th(style="text-align:right") Итого:
+						th(style="text-align:center")= qty
+						th(style="text-align:left")= sum
+			form(action='/orders' method='post')
+				button(type='submit' class='btn btn-info ') Заказ

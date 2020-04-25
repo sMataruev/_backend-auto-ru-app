@@ -1,0 +1,52 @@
+extends ../layout/empty
+block title
+	title= title
+block body
+	body
+		div(class="backdrop_wrap")
+			div(class="row")
+				div(class="col s12")
+					ul(class="tabs")
+						li(class="tab col s6")
+							a(class="active" href="#login") Войти
+						li(class="tab col s6")
+							a(href="#register") Регистрация
+
+				div(id="login" class="col s12 ")
+					form(action="/auth/login" method="post")
+
+						div(class="input-field")
+							input(id="phone" type="number" name="phone" class="validate" required)
+							label(for="phone") Номер телефона
+							span(class="helper-text" data-error="Введите номер телефона")
+
+						div(class="input-field")
+							input(id="password" type="password" name="password" class="validate" required)
+							label(for="password") Пароль
+							span(class="helper-text" data-error="Введите пароль")
+
+						button(class="btn btn-primary waves-effect waves-light red col s12" type="submit") Войти
+
+				div(id="register" class="col s12")
+					form(action="/auth/register" method="post")
+						div(class="input-field")
+							input(id="name" type="text" name="name" class="validate" required)
+							label(for="name")   Ваше имя
+							span(class="helper-text" data-error="Ведите имя")
+
+						div(class="input-field")
+							input(id="rphone" type="number" name="rphone" class="validate" required)
+							label(for="rphone") Номер телефона
+							span(class="helper-text" data-error="Введите номер телефона")
+
+						div(class="input-field")
+							input(id="rpassword" type="password" name="rpassword" class="validate" required)
+							label(for="rpassword") Пароль
+							span(class="helper-text" data-error="Введите пароль")
+
+						div(class="input-field")
+							input(id="confirm" type="password" name="confirm" class="validate" required)
+							label(for="confirm") Пароль еще раз
+							span(class="helper-text" data-error="Введите пароль еще раз")
+
+						button(class="btn btn-primary waves-effect waves-light red col s12" type="submit") Зарегистрироваться

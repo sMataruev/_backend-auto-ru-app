@@ -15,3 +15,55 @@
   justify-content: space-evenly;
   margin: auto;
 }
+
+
+.cr-toast {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding: .5rem;
+  border-radius: 5px;
+  text-align: center;
+  min-width: 200px;
+  max-width: 400px;
+  z-index: 1000;
+  opacity: .8;
+  transition: all 1s ease-in-out; }
+.cr-toast h5 {
+  margin: 0 0 1rem 0;
+  padding-bottom: .5rem;
+  font-weight: 600;
+  border-bottom: 1px solid #78807c; }
+
+.myNav {
+  background: #8f8b91;
+  padding: 0 2rem; }
+
+.row {
+  margin-bottom: 0; }
+
+.myCardAction {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+.myCardAction .cartForm {
+  margin: 0; }
+
+.auth {
+  padding-top: 1rem; }
+
+.backdrop_wrap {
+  height: 101vh;
+  text-align: center;
+  padding-top: 4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto; }
+.backdrop_wrap .row {
+  display: block;
+  width: 50%; }
+.backdrop_wrap form {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 10px 40px 6px rgba(0, 0, 0, 0.4); }

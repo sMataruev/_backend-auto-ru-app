@@ -4,11 +4,7 @@ const router = Router();
 const Car = require( '../model/car' );
 
 router.get( '/', async ( req, res ) => {
-
     const cars = await Car.find();
-
-    console.log( 'cars___', cars );
-
     res.status( 200 )
         .render( 'cars', {
             title: 'Car list',

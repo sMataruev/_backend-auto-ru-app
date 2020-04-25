@@ -1,7 +1,7 @@
 'use strict';
 const { Schema, model } = require( 'mongoose' );
 
-const userSchema = new Schema({
+const userSchema = new Schema( {
     name: {
         type: String,
         required: true
@@ -11,12 +11,12 @@ const userSchema = new Schema({
         required: true
     },
     cart: {
-        item: [
+        items: [
             {
                 carId: {
-                   type: Schema.Types.ObjectId,
-                   ref: 'Car',
-                   required: true
+                    type: Schema.Types.ObjectId,
+                    ref: 'Car',
+                    required: true
                 },
                 count: {
                     type: Number,
@@ -25,13 +25,42 @@ const userSchema = new Schema({
             }
         ]
     }
-});
-userSchema.methods.addToCartItems = function(str) {
-   return str + ' HELLO FROM METHODS';
+} );
+userSchema.methods.addToCartItems = function ( id ) {
+
+    const items = [ ...this.cart.items ];
+    const idx = ( items.findIndex( i => i.carId.toString() === id.toString() ) );
+
+    if ( idx >= 0 ) {
+        items[ idx ].count++
+    } else {
+        items.push( {
+            carId: id
+        } )
+    }
+    this.cart = { items };
+
+    this.save()
 };
 
-userSchema.methods.removeFromCartItems = function() {
+userSchema.methods.removeFromCartItems = function (id) {
+    const items = [ ...this.cart.items ];
+    const idx = ( items.findIndex( i => i.carId.toString() === id.toString() ) )
 
+    if ( idx >= 0 ) {
+        const count = --items[ idx ].count;
+        if ( count === 0 ) {
+            items.splice( idx, 1 )
+        }
+    }
+    this.cart = { items };
+
+    this.save()
+};
+
+userSchema.methods.clearCartItems = function () {
+    this.cart = { items: [] };
+    this.save()
 };
 
 module.exports = model( 'User', userSchema );

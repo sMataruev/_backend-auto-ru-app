@@ -15,15 +15,16 @@ router
     } )
     .post( '/', async ( req, res ) => {
 
+        const { year, distance, brand, price, carImg } = req.body;
+        const car = new Car( {
+            brand: brand,
+            year: year,
+            price: price,
+            carImg: carImg,
+            distance: distance,
+            userId: req.user._id
+        } );
 
-        // const { year, distance, brand, price, carImg } = req.body;
-        // const car = new Car( {
-        //     brand: brand,
-        //     year: year,
-        //     price: price,
-        //     carImg: carImg,
-        //     distance: distance,
-        // } );
         await car.save();
         res.status( 201 ).redirect( '/cars' )
     } );

@@ -6,6 +6,12 @@ nav(class="myNav")
 				li(class='active'): a(href="/cart") Cart
 			else
 				li: a(href="/cart") Cart
+
+			if isOrder === true
+				li(class='active'): a(href="/orders") Заказ
+			else
+				li: a(href="/orders") Заказ
+
 			if isHome === true
 				li(class='active'): a(href="/") Home
 			else

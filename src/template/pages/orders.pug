@@ -1,0 +1,28 @@
+extends ../layout/template
+block title
+	title= title
+block body
+	body
+		.container
+			span Пользователь
+				h2= orders.user.userId.name
+			table
+				thead
+					tr
+						th Модель
+						th(style="text-align:center") Количество
+						th Цена
+
+				each item, index in orders.cars
+					tbody
+						tr
+							td= item.carId.brand
+							td(style="text-align:center; display:flex; justify-content:center")
+								span= item.count
+							td= item.carId.price
+
+				tfoot
+					tr
+						th(style="text-align:right") Итого:
+						th(style="text-align:center")=qty
+						th(style="text-align:left")=sum

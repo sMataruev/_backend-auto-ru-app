@@ -2,16 +2,6 @@ nav(class="myNav")
 	.nav_wrapper
 		a(href="/" class="brand-logo") auto.ru
 		ul(id="nav-mobile" class="right hide-on-med-and-down")
-			if isCart === true
-				li(class='active'): a(href="/cart") Cart
-			else
-				li: a(href="/cart") Cart
-
-			if isOrder === true
-				li(class='active'): a(href="/orders") Заказ
-			else
-				li: a(href="/orders") Заказ
-
 			if isHome === true
 				li(class='active'): a(href="/") Home
 			else
@@ -22,7 +12,26 @@ nav(class="myNav")
 			else
 				li: a(href="/cars") Cars
 
-			if isAdd === true
-				li(class='active'): a(href="/add") Add cars
+			if isLogged === true
+				if isAdd === true
+					li(class='active'): a(href="/add") Add cars
+				else
+					li: a(href="/add") Add cars
+
+				if isCart === true
+					li(class='active'): a(href="/cart") Cart
+				else
+					li: a(href="/cart") Cart
+
+				if isOrder === true
+					li(class='active'): a(href="/orders") Заказ
+				else
+					li: a(href="/orders") Заказ
+				li: a(href="/auth/logout") Logout
 			else
-				li: a(href="/add") Add cars
+				li: a(href="/auth") Login
+
+
+
+
+

@@ -31,9 +31,10 @@ block body
 													td: p(class='price')= car.price
 									.card-action.myCardAction
 										a(href="/cars/" + car._id) Открыть
-										form(action='/cart/add' method='post' class='CartForm')
-											input(type='hidden' name='id' value= car._id )
-											input(type='submit' class='btn btn-small' value='buy')
+										if isLogged === true
+											form(action='/cart/add' method='post' class='CartForm')
+												input(type='hidden' name='id' value= car._id )
+												input(type='submit' class='btn btn-small' value='buy')
 										//button(type="submit" class="btn red waves-effect waves-light") Удалить
 			else
 				p Машин нет

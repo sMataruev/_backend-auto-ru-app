@@ -46,5 +46,6 @@ const orderSchema = new Schema ( {
             required : true
         }
     }
-} )
+} );
+
 module.exports = model( 'Order', orderSchema );

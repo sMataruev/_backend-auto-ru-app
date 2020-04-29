@@ -1,19 +1,12 @@
 'use strict';
 const { Router } = require( 'express' );
 const router = Router();
-const User = require( '../model/user' );
 
-const Car = require( '../model/car' );
 
 router.get( '/', async ( req, res ) => {
-
-    console.log( req.session.isAuth );
-
-    const car = await Car.find( {_id: '5ea4468ac6175a4640654b59'} );
-
-    console.log('CAR - >', car);
-
-
+    console.log( res.locals.isLogged );
+    console.log('req.user____ ', req.user);
+    console.log('req.user.session ____ ', req.session.user);
     res.status( 200 )
         .render( 'index', {
             title: 'Home',

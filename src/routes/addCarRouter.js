@@ -1,11 +1,12 @@
 'use strict';
+const secureRouts = require( '../middlewares/secureRouts' );
 const { Router } = require( 'express' );
 const router = Router();
 const Car = require( '../model/car' );
 
 
 router
-    .get( '/', async ( req, res ) => {
+    .get( '/', secureRouts, async ( req, res ) => {
 
         res.status( 200 )
             .render( 'addCars', {
@@ -13,9 +14,10 @@ router
                 isAdd: true,
             } );
     } )
-    .post( '/', async ( req, res ) => {
+    .post( '/', secureRouts, async ( req, res ) => {
 
         const { year, distance, brand, price, carImg } = req.body;
+
         const car = new Car( {
             brand: brand,
             year: year,

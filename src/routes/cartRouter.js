@@ -1,10 +1,11 @@
 "use strict";
+const secureRouts = require( '../middlewares/secureRouts' );
 const { Router } = require( 'express' );
 const router = Router();
 const Cars = require( '../model/car' );
 const User = require( '../model/user' );
 
-router.get( '/', async ( req, res ) => {
+router.get( '/', secureRouts, async ( req, res ) => {
     const user = await User.findOne( { _id: req.user._id } ).populate( 'cart.items.carId' );
 
 
@@ -28,11 +29,9 @@ router.get( '/', async ( req, res ) => {
         } )
 } );
 
-router.post( '/add', async ( req, res ) => {
+router.post( '/add', secureRouts,  async ( req, res ) => {
     try {
         await req.user.addToCartItems( req.body.id );
-        //  await req.user.removeFromCartItems ( req.body.id )
-        // await req.user.clearCartItems ()
         res.status( 200 )
             .redirect( '/cart' )
     } catch ( e ) {
@@ -40,12 +39,9 @@ router.post( '/add', async ( req, res ) => {
     }
 } )
 
-
-router.post( '/rem', async ( req, res ) => {
+router.post( '/rem', secureRouts, async ( req, res ) => {
     try {
-        // await req.user.addToCartItems ( req.params.id )
         await req.user.removeFromCartItems( req.body.id )
-        // await req.user.clearCartItems ()
         res.status( 200 )
             .redirect( '/cart' )
     } catch ( e ) {

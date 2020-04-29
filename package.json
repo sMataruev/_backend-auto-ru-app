@@ -11,6 +11,7 @@
     "scss": "node-sass --watch src/sass -o public/css"
   },
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "connect-mongodb-session": "^2.3.1",

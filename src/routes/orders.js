@@ -1,9 +1,12 @@
 'use strict';
+const secureRouts = require( '../middlewares/secureRouts' );
 const { Router } = require( 'express' );
 const router = Router();
 const Order = require( '../model/order' );
 const User = require( '../model/user' );
-router.get( '/', async ( req, res ) => {
+
+
+router.get( '/', secureRouts, async ( req, res ) => {
     const orders = await Order.findOne( { 'user.userId': req.user._id } )
         .populate( 'user.userId', '_id name' )
         .populate( 'cars.carId', 'brand price' );
@@ -20,7 +23,7 @@ router.get( '/', async ( req, res ) => {
         }, 0 )
     } )
 } )
-router.post( '/', async ( req, res ) => {
+router.post( '/', secureRouts, async ( req, res ) => {
     try {
         const user = await User.findOne( { _id: req.user._id } )
             .populate( 'cart.items.carId' );
@@ -38,7 +41,7 @@ router.post( '/', async ( req, res ) => {
             user: userId
         } );
         await order.save();
-        res.send( 'Оформлен' )
+        res.redirect( '/orders' )
     } catch ( e ) {
         console.log( e );
         res.json( { "err": '500' } )

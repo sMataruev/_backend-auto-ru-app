@@ -8,10 +8,12 @@ const path = require( 'path' );
 const config = require( './config' );
 const cookieParser = require( 'cookie-parser' );
 const session = require( 'express-session' );
-const mongoSession = require( 'connect-mongodb-session' )( session );
+const MongoSession = require( 'connect-mongodb-session' )( session );
+const isLoggin = require( './middlewares/loggin' );
+const userMiddleware = require( './middlewares/userMiddleware' );
 const app = express();
 
-const mongoStore = new mongoSession( {
+const mongoStore = new MongoSession( {
     collection: 'sessions',
     uri: config.dbPath
 } );
@@ -34,25 +36,11 @@ app.use( session( {
     secret: 'secretkey' + secretKey(),
     resave: false,
     saveUninitialized: false,
-    mongoStore
+    store: mongoStore
 } ) );
-const User = require( '../src/model/user' );
 
-async function addName( req, res, next ) {
-    const user = await User.findById( '5ea44969a849663d287738ad' );
-    if ( !user ) {
-        const user = new User( {
-            name: 'Alex',
-            phoneNumber: 222222,
-        } );
-        await user.save();
-        req.user = user;
-    }
-    req.user = user;
-    next();
-}
-
-app.use( addName );
+app.use( isLoggin );
+app.use( userMiddleware );
 
 app.use( '/', homeRouter );
 app.use( '/cars', carRouter );

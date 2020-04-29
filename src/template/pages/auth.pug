@@ -1,4 +1,4 @@
-extends ../layout/empty
+extends ../layout/template
 block title
 	title= title
 block body
@@ -16,7 +16,7 @@ block body
 					form(action="/auth/login" method="post")
 
 						div(class="input-field")
-							input(id="phone" type="number" name="phone" class="validate" required)
+							input(id="phone" type="number" name="phoneNumber" class="validate" required)
 							label(for="phone") Номер телефона
 							span(class="helper-text" data-error="Введите номер телефона")
 
@@ -35,12 +35,12 @@ block body
 							span(class="helper-text" data-error="Ведите имя")
 
 						div(class="input-field")
-							input(id="rphone" type="number" name="rphone" class="validate" required)
+							input(id="rphone" type="number" name="phoneNumber" class="validate" required)
 							label(for="rphone") Номер телефона
 							span(class="helper-text" data-error="Введите номер телефона")
 
 						div(class="input-field")
-							input(id="rpassword" type="password" name="rpassword" class="validate" required)
+							input(id="rpassword" type="password" name="password" class="validate" required)
 							label(for="rpassword") Пароль
 							span(class="helper-text" data-error="Введите пароль")
 
